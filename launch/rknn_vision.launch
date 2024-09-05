@@ -1,0 +1,4 @@
+<launch>
+    <node name="rknn_vision" pkg="rknn_ros" type="rknn_vision" output="screen">
+    </node>
+</launch>

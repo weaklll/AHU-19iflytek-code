@@ -1,0 +1,15 @@
+<launch>
+
+  <include file="$(find rknn_ros)/launch/camera.launch">
+    </include>
+  <arg name="display_output" default="true"/>
+  <arg name="camera_topic" default="/usb_cam/image_raw"/>
+  <arg name="chip_type" default="RK3588"/>
+  <node name="rknn_yolov5_node" pkg="rknn_ros" type="rknn_yolov5_node" output="screen">
+    <param name="model_file" value="lzhw6_5.rknn"/>
+    <param name="display_output" value="$(arg display_output)"/>
+    <param name="prob_threshold" value="0.85"/>
+    <param name="chip_type" value="$(arg chip_type)"/>
+    <remap from="/camera/image_raw" to="$(arg camera_topic)"/>
+  </node>
+</launch>
